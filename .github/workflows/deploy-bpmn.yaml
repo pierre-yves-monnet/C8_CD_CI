@@ -3,7 +3,7 @@ name: 'Deploy updated BPMNs to Zeebe'
 on:
   push:
     paths:
-      - '*.bpmn' # match '*.bpmn' files (created or updated)
+      - 'src/main/resources/*.bpmn' # match '*.bpmn' files (created or updated)
     branches: [ test ] # match specific branch
 
 jobs:
