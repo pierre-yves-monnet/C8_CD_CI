@@ -2,12 +2,12 @@
 <definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_15lhjri" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.33.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
   <decision id="Decision_0p1e5t9" name="Risk calculation">
     <decisionTable id="DecisionTable_0m42cng">
-      <input id="Input_1">
+      <input id="Input_1" label="Score">
         <inputExpression id="InputExpression_1" typeRef="number">
           <text>score</text>
         </inputExpression>
       </input>
-      <input id="InputClause_1dw4umg" label="age">
+      <input id="InputClause_1dw4umg" label="Age">
         <inputExpression id="LiteralExpression_07kajv7" typeRef="number">
           <text>age</text>
         </inputExpression>
