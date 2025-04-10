@@ -20,7 +20,7 @@ jobs:
     outputs:
       bearer-token: ${{ fromJson(steps.zeebeBearer.outputs.response).access_token }}
     steps:
-      - name: Get Bearer Toker
+      - name: Get Bearer Token
         uses: fjogeleit/http-request-action@v1.16.4
         id: zeebeBearer
         with:
