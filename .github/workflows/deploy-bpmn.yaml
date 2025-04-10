@@ -4,7 +4,6 @@ on:
   push:
     paths:
       - 'src/main/resources/*.bpmn' # match '*.bpmn' files (created or updated)
-    branches: [ test ] # match specific branch
 
 jobs:
   prepare-files:
