@@ -11,6 +11,11 @@
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0881vny</bpmn:incoming>
       <bpmn:outgoing>Flow_1b5glmf</bpmn:outgoing>
+      <bpmn:property id="Property_0gk0or4" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_120iljp">
+        <bpmn:sourceRef>DataStoreReference_05tjk6r</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0gk0or4</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:serviceTask>
     <bpmn:exclusiveGateway id="Gateway_1e8tqws" name="risk?" default="Flow_17c9eh0">
       <bpmn:incoming>Flow_0tfn91c</bpmn:incoming>
@@ -52,6 +57,7 @@
       <bpmn:incoming>Flow_17c9eh0</bpmn:incoming>
       <bpmn:outgoing>Flow_02iwpxs</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:dataStoreReference id="DataStoreReference_05tjk6r" name="numberOfCreditCards" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="RiskCalulation">
@@ -84,6 +90,12 @@
       <bpmndi:BPMNShape id="Activity_1f8m7k4_di" bpmnElement="Activity_1lq0eeb">
         <dc:Bounds x="580" y="250" width="100" height="80" />
         <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_05tjk6r_di" bpmnElement="DataStoreReference_05tjk6r">
+        <dc:Bounds x="175" y="35" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="157" y="92" width="87" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0tfn91c_di" bpmnElement="Flow_0tfn91c">
         <di:waypoint x="460" y="180" />
@@ -119,6 +131,10 @@
       <bpmndi:BPMNEdge id="Flow_1b5glmf_di" bpmnElement="Flow_1b5glmf">
         <di:waypoint x="340" y="180" />
         <di:waypoint x="360" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DataInputAssociation_120iljp_di" bpmnElement="DataInputAssociation_120iljp">
+        <di:waypoint x="225" y="85" />
+        <di:waypoint x="280" y="140" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
