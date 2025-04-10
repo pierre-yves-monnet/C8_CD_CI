@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'src/main/resources/*.bpmn' # match '*.bpmn' files (created or updated)
+      - 'src/main/resources/*.dmn' # match '*.bpmn' files (created or updated)
 
 jobs:
   prepare-files:

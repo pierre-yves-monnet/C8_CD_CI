@@ -27,7 +27,7 @@
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_1b5glmf" sourceRef="Activity_1jpksgi" targetRef="Activity_1icpw59" />
     <bpmn:sequenceFlow id="Flow_06nk23d" name="green" sourceRef="Gateway_1e8tqws" targetRef="Activity_15jikpm">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=riskLevel=="green"</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=riskLevel = "green"</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:endEvent id="Event_0fn66jl">
       <bpmn:incoming>Flow_01y0chr</bpmn:incoming>
