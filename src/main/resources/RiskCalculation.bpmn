@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1be8kfj" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.46.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1be8kfj" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.46.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
   <bpmn:process id="RiskCalulation" name="RiskCalulation" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_0881vny</bpmn:outgoing>
@@ -8,6 +8,9 @@
     <bpmn:serviceTask id="Activity_1jpksgi" name="getScore">
       <bpmn:extensionElements>
         <zeebe:taskDefinition type="get-score" />
+        <zeebe:ioMapping>
+          <zeebe:input source="=customerId" target="customerId" />
+        </zeebe:ioMapping>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0881vny</bpmn:incoming>
       <bpmn:outgoing>Flow_1b5glmf</bpmn:outgoing>
@@ -121,16 +124,16 @@
           <dc:Bounds x="336" y="192" width="29" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataStoreReference_0anmnqb_di" bpmnElement="DataStoreReference_0anmnqb">
-        <dc:Bounds x="535" y="145" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="538" y="202" width="44" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_1ki3a07" bpmnElement="DataStoreReference_08k27gq">
         <dc:Bounds x="425" y="105" width="50" height="50" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="440" y="81" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_0anmnqb_di" bpmnElement="DataStoreReference_0anmnqb">
+        <dc:Bounds x="555" y="135" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="558" y="192" width="44" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0881vny_di" bpmnElement="Flow_0881vny">
@@ -185,8 +188,8 @@
         <di:waypoint x="480" y="240" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_0865g20_di" bpmnElement="DataOutputAssociation_0865g20">
-        <di:waypoint x="500" y="240" />
-        <di:waypoint x="545" y="195" />
+        <di:waypoint x="503" y="241" />
+        <di:waypoint x="564" y="185" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
