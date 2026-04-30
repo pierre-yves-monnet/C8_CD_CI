@@ -118,12 +118,6 @@
           <dc:Bounds x="316" y="162" width="30" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataStoreReference_05tjk6r_di" bpmnElement="DataStoreReference_05tjk6r">
-        <dc:Bounds x="175" y="105" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="157" y="162" width="87" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_1ki3a07" bpmnElement="DataStoreReference_08k27gq">
         <dc:Bounds x="435" y="105" width="50" height="50" />
         <bpmndi:BPMNLabel>
@@ -134,6 +128,12 @@
         <dc:Bounds x="565" y="105" width="50" height="50" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="568" y="162" width="44" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataStoreReference_05tjk6r_di" bpmnElement="DataStoreReference_05tjk6r">
+        <dc:Bounds x="175" y="105" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="157" y="162" width="87" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0881vny_di" bpmnElement="Flow_0881vny">
