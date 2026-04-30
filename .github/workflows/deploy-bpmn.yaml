@@ -1,23 +1,35 @@
 name: 'Deploy updated BPMNs to Zeebe'
-
 on:
   push:
     paths:
-      - 'src/main/resources/*.bpmn' # match '*.bpmn' files (created or updated)
-      - 'src/main/resources/*.dmn' # match '*.bpmn' files (created or updated)
+      - 'src/main/resources/*.bpmn'
+      - 'src/main/resources/*.dmn'
 
 jobs:
   prepare-files:
     runs-on: ubuntu-latest
     outputs:
-      matrix-added: ${{ steps.file-changes.outputs.files_added }}
-      matrix-modified: ${{ steps.file-changes.outputs.files_modified }}
+      matrix-added: ${{ steps.file-changes.outputs.added_files }}
+      matrix-modified: ${{ steps.file-changes.outputs.modified_files }}
+      has-added: ${{ steps.file-changes.outputs.any_added }}
+      has-modified: ${{ steps.file-changes.outputs.any_modified }}
     steps:
-      - id: file-changes
-        uses: trilom/file-changes-action@v1.2.4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # requis par tj-actions/changed-files pour comparer les commits
+
+      - name: Get changed files
+        id: file-changes
+        uses: tj-actions/changed-files@v46
+        with:
+          files: |
+            src/main/resources/*.bpmn
+            src/main/resources/*.dmn
+          json: true  # retourne les listes en JSON pour la matrix strategy
 
   deploy-modified-files:
-    if: ${{ needs.prepare-files.outputs.matrix-modified != '[]' }}
+    if: ${{ needs.prepare-files.outputs.has-modified == 'true' }}
     needs: [prepare-files]
     runs-on: ubuntu-latest
     strategy:
@@ -30,10 +42,9 @@ jobs:
           files: ${{ matrix.file }}
 
       - name: Echo file
-        run: |
-          echo ${{ matrix.file }} # to test if the correct file was passed
+        run: echo ${{ matrix.file }}  # to test if the correct file was passed
 
-      - name: Get Bearer Toker
+      - name: Get Bearer Token
         uses: fjogeleit/http-request-action@v1.16.4
         id: zeebeBearer
         with:
@@ -42,13 +53,14 @@ jobs:
           customHeaders: '{"Content-Type": "application/x-www-form-urlencoded"}'
           data: 'grant_type=client_credentials&audience=zeebe.camunda.io&client_id=${{ secrets.ZEEBE_CLIENT_ID }}&client_secret=${{ secrets.ZEEBE_CLIENT_SECRET }}'
 
-
       - name: Deploy to Zeebe
         run: |
-          curl -X POST "https://${{ secrets.CLUSTER_REGION }}.zeebe.camunda.io/${{ secrets.CLUSTER_ID }}/v2/deployments" -H "Authorization: Bearer ${{ fromJson(steps.zeebeBearer.outputs.response).access_token }}" -F "resources=@${{ github.workspace }}/${{ matrix.file }}"
+          curl -X POST "https://${{ secrets.CLUSTER_REGION }}.zeebe.camunda.io/${{ secrets.CLUSTER_ID }}/v2/deployments" \
+            -H "Authorization: Bearer ${{ fromJson(steps.zeebeBearer.outputs.response).access_token }}" \
+            -F "resources=@${{ github.workspace }}/${{ matrix.file }}"
 
   deploy-new-files:
-    if: ${{ needs.prepare-files.outputs.matrix-added != '[]' }}
+    if: ${{ needs.prepare-files.outputs.has-added == 'true' }}
     needs: [prepare-files]
     runs-on: ubuntu-latest
     strategy:
@@ -71,4 +83,6 @@ jobs:
 
       - name: Deploy to Zeebe
         run: |
-          curl -X POST "https://${{ secrets.CLUSTER_REGION }}.zeebe.camunda.io/${{ secrets.CLUSTER_ID }}/v2/deployments" -H "Authorization: Bearer ${{ fromJson(steps.zeebeBearer.outputs.response).access_token }}" -F "resources=@${{ github.workspace }}/${{ matrix.file }}"
+          curl -X POST "https://${{ secrets.CLUSTER_REGION }}.zeebe.camunda.io/${{ secrets.CLUSTER_ID }}/v2/deployments" \
+            -H "Authorization: Bearer ${{ fromJson(steps.zeebeBearer.outputs.response).access_token }}" \
+            -F "resources=@${{ github.workspace }}/${{ matrix.file }}"
