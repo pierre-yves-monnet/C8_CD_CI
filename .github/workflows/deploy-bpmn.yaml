@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -28,7 +28,7 @@ jobs:
           echo "Modified: ${{ steps.file-changes.outputs.modified_files }}"
 
       - name: Get Bearer Token
-        uses: fjogeleit/http-request-action@v1.16.4
+        uses: fjogeleit/http-request-action@v2
         id: zeebeBearer
         with:
           url: 'https://login.cloud.camunda.io/oauth/token'
